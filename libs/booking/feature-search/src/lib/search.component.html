@@ -1,0 +1,9 @@
+<h1>booking-search</h1>
+
+<table class="table">
+  <tr *ngFor="let flight of flightList$ | async">
+    <td>{{ flight.id }}</td>
+    <td>{{ flight.name }}</td>
+    <td>{{ flight.description }}</td>
+  </tr>
+</table>

@@ -1,0 +1,33 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ddd-demo/booking/domain": ["libs/booking/domain/src/index.ts"],
+      "@ddd-demo/boarding/domain": ["libs/boarding/domain/src/index.ts"],
+      "@ddd-demo/booking/feature-search": [
+        "libs/booking/feature-search/src/index.ts"
+      ],
+      "@ddd-demo/booking/feature-cancel": [
+        "libs/booking/feature-cancel/src/index.ts"
+      ],
+      "@ddd-demo/boarding/feature-manage": [
+        "libs/boarding/feature-manage/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

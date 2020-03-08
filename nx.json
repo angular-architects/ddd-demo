@@ -1,0 +1,37 @@
+{
+  "npmScope": "ddd-demo",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "flight-app": {
+      "tags": []
+    },
+    "flight-app-e2e": {
+      "tags": [],
+      "implicitDependencies": ["flight-app"]
+    },
+    "booking-domain": {
+      "tags": ["domain:booking", "type:domain-logic"]
+    },
+    "boarding-domain": {
+      "tags": ["domain:boarding", "type:domain-logic"]
+    },
+    "booking-feature-search": {
+      "tags": ["domain:booking", "type:feature"]
+    },
+    "booking-feature-cancel": {
+      "tags": ["domain:booking", "type:feature"]
+    },
+    "boarding-feature-manage": {
+      "tags": ["domain:boarding", "type:feature"]
+    }
+  }
+}
