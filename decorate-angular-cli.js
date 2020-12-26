@@ -25,7 +25,13 @@ const fs = require('fs');
 const os = require('os');
 const cp = require('child_process');
 const isWindows = os.platform() === 'win32';
-const { output } = require('@nrwl/workspace');
+let output;
+try {
+  output = require('@nrwl/workspace').output;
+} catch (e) {
+  console.warn('Angular CLI could not be decorated to enable computation caching. Please ensure @nrwl/workspace is installed.');
+  process.exit(0);
+}
 
 /**
  * Paths to files being patched
@@ -39,16 +45,21 @@ function patchAngularCLI(initPath) {
   const angularCLIInit = fs.readFileSync(initPath, 'utf-8').toString();
 
   if (!angularCLIInit.includes('NX_CLI_SET')) {
-    fs.writeFileSync(
-      initPath,
-      `
+    fs.writeFileSync(initPath, `
 if (!process.env['NX_CLI_SET']) {
   const { output } = require('@nrwl/workspace');
   output.warn({ title: 'The Angular CLI was invoked instead of the Nx CLI. Use "npx ng [command]" or "nx [command]" instead.' });
 }
+
+if (process.argv[2] === 'update') {
+  const { output } = require('@nrwl/workspace');
+  output.error({
+    title: '"ng update" is deprecated in favor of "nx migrate". Read more: https://nx.dev/latest/angular/workspace/update'
+  });
+  throw new Error();
+}
 ${angularCLIInit}
-    `
-    );
+    `);
   }
 }
 
@@ -65,20 +76,16 @@ function symlinkNgCLItoNxCLI() {
        * This is the most reliable way to create symlink-like behavior on Windows.
        * Such that it works in all shells and works with npx.
        */
-      ['', '.cmd', '.ps1'].forEach((ext) => {
-        if (fs.existsSync(nxPath + ext))
-          fs.writeFileSync(ngPath + ext, fs.readFileSync(nxPath + ext));
+      ['', '.cmd', '.ps1'].forEach(ext => {
+        if (fs.existsSync(nxPath + ext)) fs.writeFileSync(ngPath + ext, fs.readFileSync(nxPath + ext));
       });
     } else {
       // If unix-based, symlink
       cp.execSync(`ln -sf ./nx ${ngPath}`);
     }
-  } catch (e) {
-    output.error({
-      title:
-        'Unable to create a symlink from the Angular CLI to the Nx CLI:' +
-        e.message,
-    });
+  }
+  catch(e) {
+    output.error({ title: 'Unable to create a symlink from the Angular CLI to the Nx CLI:' + e.message });
     throw e;
   }
 }
@@ -86,11 +93,7 @@ function symlinkNgCLItoNxCLI() {
 try {
   symlinkNgCLItoNxCLI();
   patchAngularCLI(angularCLIInitPath);
-  output.log({
-    title: 'Angular CLI has been decorated to enable computation caching.',
-  });
-} catch (e) {
-  output.error({
-    title: 'Decoration of the Angular CLI did not complete successfully',
-  });
+  output.log({ title: 'Angular CLI has been decorated to enable computation caching.' });
+} catch(e) {
+  output.error({ title: 'Decoration of the Angular CLI did not complete successfully' });
 }
