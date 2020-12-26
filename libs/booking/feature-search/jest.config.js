@@ -1,6 +1,5 @@
 module.exports = {
-  name: 'booking-feature-search',
-  preset: '../../../jest.config.js',
+  preset: '../../../jest.preset.js',
   coverageDirectory: '../../../coverage/libs/booking/feature-search',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
@@ -12,10 +11,13 @@ module.exports = {
     'ts-jest': {
       tsConfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$',
-      astTransformers: [
-        'jest-preset-angular/build/InlineFilesTransformer',
-        'jest-preset-angular/build/StripStylesTransformer',
-      ],
+      astTransformers: {
+        before: [
+          'jest-preset-angular/build/InlineFilesTransformer',
+          'jest-preset-angular/build/StripStylesTransformer',
+        ],
+      },
     },
   },
+  displayName: 'booking-feature-search',
 };
