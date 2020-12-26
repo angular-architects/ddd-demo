@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { BoardingFeatureManageModule } from './boarding-feature-manage.module';
 
 describe('BoardingFeatureManageModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [BoardingFeatureManageModule]
     }).compileComponents();
