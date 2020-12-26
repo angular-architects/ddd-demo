@@ -79,16 +79,14 @@
               "apps/flight-app/tsconfig.app.json",
               "apps/flight-app/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/flight-app/**"]
+            "exclude": ["**/node_modules/**", "!apps/flight-app/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/flight-app/jest.config.js",
-            "tsConfig": "apps/flight-app/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/flight-app/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       }
@@ -115,7 +113,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["apps/flight-app-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/flight-app-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/flight-app-e2e/**/*"]
           }
         }
       }
@@ -133,16 +131,14 @@
               "libs/booking/domain/tsconfig.lib.json",
               "libs/booking/domain/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/booking/domain/**"]
+            "exclude": ["**/node_modules/**", "!libs/booking/domain/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/booking/domain/jest.config.js",
-            "tsConfig": "libs/booking/domain/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/booking/domain/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
@@ -165,16 +161,14 @@
               "libs/boarding/domain/tsconfig.lib.json",
               "libs/boarding/domain/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/boarding/domain/**"]
+            "exclude": ["**/node_modules/**", "!libs/boarding/domain/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/boarding/domain/jest.config.js",
-            "tsConfig": "libs/boarding/domain/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/boarding/domain/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
@@ -197,16 +191,17 @@
               "libs/booking/feature-search/tsconfig.lib.json",
               "libs/booking/feature-search/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/booking/feature-search/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/booking/feature-search/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/booking/feature-search/jest.config.js",
-            "tsConfig": "libs/booking/feature-search/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/booking/feature-search/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
@@ -229,16 +224,17 @@
               "libs/booking/feature-cancel/tsconfig.lib.json",
               "libs/booking/feature-cancel/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/booking/feature-cancel/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/booking/feature-cancel/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/booking/feature-cancel/jest.config.js",
-            "tsConfig": "libs/booking/feature-cancel/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/booking/feature-cancel/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
@@ -263,7 +259,7 @@
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/boarding/feature-manage/**"
+              "!libs/boarding/feature-manage/**/*"
             ]
           }
         },
@@ -271,9 +267,7 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/boarding/feature-manage/jest.config.js",
-            "tsConfig": "libs/boarding/feature-manage/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/boarding/feature-manage/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
