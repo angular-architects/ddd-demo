@@ -1,9 +1,10 @@
 module.exports = {
-  testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
-  transform: {
-    '^.+\\.(ts|js|html)$': 'ts-jest'
-  },
-  resolver: '@nrwl/jest/plugins/resolver',
-  moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageReporters: ['html']
+  projects: [
+    '<rootDir>/apps/flight-app',
+    '<rootDir>/libs/booking/domain',
+    '<rootDir>/libs/boarding/domain',
+    '<rootDir>/libs/booking/feature-search',
+    '<rootDir>/libs/booking/feature-cancel',
+    '<rootDir>/libs/boarding/feature-manage',
+  ],
 };

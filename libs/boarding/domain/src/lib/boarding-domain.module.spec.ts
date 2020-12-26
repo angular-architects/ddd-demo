@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { BoardingDomainModule } from './boarding-domain.module';
 
 describe('BoardingDomainModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [BoardingDomainModule]
     }).compileComponents();
